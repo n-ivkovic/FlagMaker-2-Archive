@@ -105,7 +105,10 @@ public class AboutController extends VBox
 
 	private void AddHistory()
 	{
-		AddVersion("2.0", "In progress");
+		AddVersion("2.0.1", "2016-07-10");
+		AddFeature("Fixed file encoding issue");
+		
+		AddVersion("2.0", "2016-05-01");
 		AddFeature("Linux version");
 		AddFeature("Mac version");
 		AddFeature("Installer");
