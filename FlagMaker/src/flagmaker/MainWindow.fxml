@@ -107,7 +107,7 @@
 				</Button>
 			</items>
 		</ToolBar>
-		<SplitPane fx:id="splitPane" dividerPositions="0.6" prefHeight="160.0" prefWidth="200.0" styleClass="window" VBox.vgrow="ALWAYS">
+		<SplitPane fx:id="splitPane" dividerPositions="0.55" prefHeight="160.0" prefWidth="200.0" styleClass="window" VBox.vgrow="ALWAYS">
 			<items>
 				<AnchorPane fx:id="leftAnchor" minHeight="0.0" minWidth="100.0" prefHeight="160.0" prefWidth="100.0" styleClass="transparent">
 					<children>

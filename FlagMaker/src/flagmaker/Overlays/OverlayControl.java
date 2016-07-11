@@ -25,8 +25,10 @@ public class OverlayControl extends VBox
 {
 	@FXML private Button btnOverlay;
 	@FXML private VBox pnlSliders;
+	@FXML private ImageView btnExpandCollapse;
 	@FXML private ImageView btnVisibility;
 	
+	@FXML private Tooltip ttpExpandCollapse;
 	@FXML private Tooltip ttpChangeType;
 	@FXML private Tooltip ttpVisibility;
 	@FXML private Tooltip ttpRemove;
@@ -97,11 +99,15 @@ public class OverlayControl extends VBox
 	public void Expand()
 	{
 		ControlExtensions.ShowControl(pnlSliders);
+		SetCollapseButton("flagmaker/Images/collapse.png");
+		ttpExpandCollapse.setText(LocalizationHandler.Get("Collapse"));
 	}
 	
 	public void Collapse()
 	{
 		ControlExtensions.HideControl(pnlSliders);
+		SetCollapseButton("flagmaker/Images/expand.png");
+		ttpExpandCollapse.setText(LocalizationHandler.Get("Expand"));
 	}
 	
 	public void SetMaximum(int maximumX, int maximumY)
@@ -169,6 +175,7 @@ public class OverlayControl extends VBox
 	
 	private void LoadLocalization()
 	{
+		ttpExpandCollapse.setText(LocalizationHandler.Get("Collapse"));
 		ttpChangeType.setText(LocalizationHandler.Get("OverlayChangeType"));
 		ttpVisibility.setText(LocalizationHandler.Get("ToggleVisibility"));
 		ttpRemove.setText(LocalizationHandler.Get("Remove"));
@@ -224,6 +231,18 @@ public class OverlayControl extends VBox
 		MainWindow.Clone(this);
 	}
 
+	@FXML private void SetCollapsed()
+	{
+		if (pnlSliders.visibleProperty().get())
+		{
+			Collapse();
+		}
+		else
+		{
+			Expand();
+		}
+	}
+	
 	@FXML private void SetVisibility()
 	{
 		_overlay.IsEnabled = !_overlay.IsEnabled;
@@ -231,6 +250,11 @@ public class OverlayControl extends VBox
 		Draw();
 	}
 
+	private void SetCollapseButton(String icon)
+	{
+		btnExpandCollapse.setImage(new Image(icon));
+	}
+	
 	private void SetVisibilityButton()
 	{
 		btnVisibility.setImage(new Image(_overlay.IsEnabled
