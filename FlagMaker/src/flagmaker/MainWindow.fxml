@@ -330,6 +330,36 @@
 										</ImageView>
 									</graphic>
 								</Button>
+								<Button onAction="#OverlaysExpandAll">
+									<HBox.margin>
+										<Insets left="10.0" />
+									</HBox.margin>
+									<tooltip>
+										<Tooltip fx:id="ttpOverlaysExpandAll" />
+									</tooltip>
+									<graphic>
+										<ImageView fitHeight="32.0" fitWidth="32.0">
+											<image>
+												<Image url="flagmaker/Images/expand.png" />
+											</image>
+										</ImageView>
+									</graphic>
+								</Button>
+								<Button onAction="#OverlaysCollapseAll">
+									<HBox.margin>
+										<Insets left="10.0" />
+									</HBox.margin>
+									<tooltip>
+										<Tooltip fx:id="ttpOverlaysCollapseAll" />
+									</tooltip>
+									<graphic>
+										<ImageView fitHeight="32.0" fitWidth="32.0">
+											<image>
+												<Image url="flagmaker/Images/collapse.png" />
+											</image>
+										</ImageView>
+									</graphic>
+								</Button>
 							</children>
 						</HBox>
 						<ScrollPane fitToWidth="true">
