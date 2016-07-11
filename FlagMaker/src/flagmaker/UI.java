@@ -32,7 +32,7 @@ public class UI extends Application
 
 		VBox root = loader.load();
 		Scene scene = new Scene(root);
-		stage.getIcons().add(new Image("flagmaker/Images/icon.png"));
+		stage.getIcons().add(new Image("flagmaker/Images/fm_app_icon_32e_icon.png"));
 		stage.setScene(scene);
 		scene.getStylesheets().add(getClass().getResource("Style.css").toExternalForm());
 		stage.show();
