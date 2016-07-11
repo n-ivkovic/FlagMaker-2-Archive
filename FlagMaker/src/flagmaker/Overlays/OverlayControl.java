@@ -1,5 +1,6 @@
 package flagmaker.Overlays;
 
+import flagmaker.Extensions.ControlExtensions;
 import flagmaker.Files.LocalizationHandler;
 import flagmaker.MainWindowController;
 import flagmaker.Overlays.Attributes.Attribute;
@@ -82,6 +83,45 @@ public class OverlayControl extends VBox
 		_isFirst = false;
 		IsLoading = false;
 	}
+	
+	public void OverlaySliderChanged(boolean triggeredByUser)
+	{
+		if (triggeredByUser)
+		{
+			_overlay.SetValues(GetAttributeSliderValues());
+			Draw();
+		}
+		MainWindow.SetAsUnsaved();
+	}
+	
+	public void Expand()
+	{
+		ControlExtensions.ShowControl(pnlSliders);
+	}
+	
+	public void Collapse()
+	{
+		ControlExtensions.HideControl(pnlSliders);
+	}
+	
+	public void SetMaximum(int maximumX, int maximumY)
+	{
+		_defaultMaximumX = maximumX;
+		_defaultMaximumY = maximumY;
+
+		_overlay.SetMaximum(maximumX, maximumY);
+		
+		AttributeSlider[] sliders = GetAttributeSliders();
+		for (AttributeSlider slider : sliders)
+		{
+			if (slider instanceof NumericAttributeSlider)
+			{
+				((NumericAttributeSlider)slider).SetMaximum(((NumericAttributeSlider)slider).UseMaxX
+						? _defaultMaximumX
+						: _defaultMaximumY);
+			}
+		}
+	}
 
 	private void AddSliders()
 	{
@@ -127,25 +167,6 @@ public class OverlayControl extends VBox
 		}
 	}
 	
-	public void SetMaximum(int maximumX, int maximumY)
-	{
-		_defaultMaximumX = maximumX;
-		_defaultMaximumY = maximumY;
-
-		_overlay.SetMaximum(maximumX, maximumY);
-		
-		AttributeSlider[] sliders = GetAttributeSliders();
-		for (AttributeSlider slider : sliders)
-		{
-			if (slider instanceof NumericAttributeSlider)
-			{
-				((NumericAttributeSlider)slider).SetMaximum(((NumericAttributeSlider)slider).UseMaxX
-						? _defaultMaximumX
-						: _defaultMaximumY);
-			}
-		}
-	}
-	
 	private void LoadLocalization()
 	{
 		ttpChangeType.setText(LocalizationHandler.Get("OverlayChangeType"));
@@ -154,16 +175,6 @@ public class OverlayControl extends VBox
 		ttpMoveUp.setText(LocalizationHandler.Get("MoveUp"));
 		ttpMoveDown.setText(LocalizationHandler.Get("MoveDown"));
 		ttpClone.setText(LocalizationHandler.Get("Clone"));
-	}
-	
-	public void OverlaySliderChanged(boolean triggeredByUser)
-	{
-		if (triggeredByUser)
-		{
-			_overlay.SetValues(GetAttributeSliderValues());
-			Draw();
-		}
-		MainWindow.SetAsUnsaved();
 	}
 
 	@FXML private void OverlaySelect()

@@ -545,12 +545,18 @@ public class MainWindowController implements ColorButtonListener
 
 	@FXML private void OverlaysExpandAll()
 	{
-		
+		for (OverlayControl overlay : (List<OverlayControl>)(List<?>)lstOverlays.getChildren())
+		{
+			overlay.Expand();
+		}
 	}
 	
 	@FXML private void OverlaysCollapseAll()
 	{
-		
+		for (OverlayControl overlay : (List<OverlayControl>)(List<?>)lstOverlays.getChildren())
+		{
+			overlay.Collapse();
+		}
 	}
 	
 	// Colors
