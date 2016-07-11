@@ -112,6 +112,8 @@ public class MainWindowController implements ColorButtonListener
 
 	@FXML private VBox lstOverlays;
 	@FXML private Tooltip ttpOverlayAddNew;
+	@FXML private Tooltip ttpOverlaysExpandAll;
+	@FXML private Tooltip ttpOverlaysCollapseAll;
 	
 	@FXML private Label lblDivisions;
 	
@@ -223,6 +225,8 @@ public class MainWindowController implements ColorButtonListener
 				
 		lblOverlays.setText(LocalizationHandler.Get("Overlays"));
 		ttpOverlayAddNew.setText(LocalizationHandler.Get("OverlayAdd"));
+		ttpOverlaysExpandAll.setText(LocalizationHandler.Get("ExpandAll"));
+		ttpOverlaysCollapseAll.setText(LocalizationHandler.Get("CollapseAll"));
 		LoadBasicPresets();
 	}
 	
@@ -539,6 +543,22 @@ public class MainWindowController implements ColorButtonListener
 		}
 	}
 
+	@FXML private void OverlaysExpandAll()
+	{
+		for (OverlayControl overlay : (List<OverlayControl>)(List<?>)lstOverlays.getChildren())
+		{
+			overlay.Expand();
+		}
+	}
+	
+	@FXML private void OverlaysCollapseAll()
+	{
+		for (OverlayControl overlay : (List<OverlayControl>)(List<?>)lstOverlays.getChildren())
+		{
+			overlay.Collapse();
+		}
+	}
+	
 	// Colors
 	private void SetColorsAndSliders()
 	{

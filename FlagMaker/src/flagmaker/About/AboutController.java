@@ -105,6 +105,9 @@ public class AboutController extends VBox
 
 	private void AddHistory()
 	{
+		AddVersion("2.1", "");
+		AddFeature("Expand and collapse overlay sliders");
+		
 		AddVersion("2.0.1", "2016-07-10");
 		AddFeature("Fixed file encoding issue");
 		

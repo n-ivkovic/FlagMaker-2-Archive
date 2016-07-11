@@ -1,5 +1,6 @@
 package flagmaker.Overlays;
 
+import flagmaker.Extensions.ControlExtensions;
 import flagmaker.Files.LocalizationHandler;
 import flagmaker.MainWindowController;
 import flagmaker.Overlays.Attributes.Attribute;
@@ -24,8 +25,10 @@ public class OverlayControl extends VBox
 {
 	@FXML private Button btnOverlay;
 	@FXML private VBox pnlSliders;
+	@FXML private ImageView btnExpandCollapse;
 	@FXML private ImageView btnVisibility;
 	
+	@FXML private Tooltip ttpExpandCollapse;
 	@FXML private Tooltip ttpChangeType;
 	@FXML private Tooltip ttpVisibility;
 	@FXML private Tooltip ttpRemove;
@@ -82,6 +85,49 @@ public class OverlayControl extends VBox
 		_isFirst = false;
 		IsLoading = false;
 	}
+	
+	public void OverlaySliderChanged(boolean triggeredByUser)
+	{
+		if (triggeredByUser)
+		{
+			_overlay.SetValues(GetAttributeSliderValues());
+			Draw();
+		}
+		MainWindow.SetAsUnsaved();
+	}
+	
+	public void Expand()
+	{
+		ControlExtensions.ShowControl(pnlSliders);
+		SetCollapseButton("flagmaker/Images/collapse.png");
+		ttpExpandCollapse.setText(LocalizationHandler.Get("Collapse"));
+	}
+	
+	public void Collapse()
+	{
+		ControlExtensions.HideControl(pnlSliders);
+		SetCollapseButton("flagmaker/Images/expand.png");
+		ttpExpandCollapse.setText(LocalizationHandler.Get("Expand"));
+	}
+	
+	public void SetMaximum(int maximumX, int maximumY)
+	{
+		_defaultMaximumX = maximumX;
+		_defaultMaximumY = maximumY;
+
+		_overlay.SetMaximum(maximumX, maximumY);
+		
+		AttributeSlider[] sliders = GetAttributeSliders();
+		for (AttributeSlider slider : sliders)
+		{
+			if (slider instanceof NumericAttributeSlider)
+			{
+				((NumericAttributeSlider)slider).SetMaximum(((NumericAttributeSlider)slider).UseMaxX
+						? _defaultMaximumX
+						: _defaultMaximumY);
+			}
+		}
+	}
 
 	private void AddSliders()
 	{
@@ -127,43 +173,15 @@ public class OverlayControl extends VBox
 		}
 	}
 	
-	public void SetMaximum(int maximumX, int maximumY)
-	{
-		_defaultMaximumX = maximumX;
-		_defaultMaximumY = maximumY;
-
-		_overlay.SetMaximum(maximumX, maximumY);
-		
-		AttributeSlider[] sliders = GetAttributeSliders();
-		for (AttributeSlider slider : sliders)
-		{
-			if (slider instanceof NumericAttributeSlider)
-			{
-				((NumericAttributeSlider)slider).SetMaximum(((NumericAttributeSlider)slider).UseMaxX
-						? _defaultMaximumX
-						: _defaultMaximumY);
-			}
-		}
-	}
-	
 	private void LoadLocalization()
 	{
+		ttpExpandCollapse.setText(LocalizationHandler.Get("Collapse"));
 		ttpChangeType.setText(LocalizationHandler.Get("OverlayChangeType"));
 		ttpVisibility.setText(LocalizationHandler.Get("ToggleVisibility"));
 		ttpRemove.setText(LocalizationHandler.Get("Remove"));
 		ttpMoveUp.setText(LocalizationHandler.Get("MoveUp"));
 		ttpMoveDown.setText(LocalizationHandler.Get("MoveDown"));
 		ttpClone.setText(LocalizationHandler.Get("Clone"));
-	}
-	
-	public void OverlaySliderChanged(boolean triggeredByUser)
-	{
-		if (triggeredByUser)
-		{
-			_overlay.SetValues(GetAttributeSliderValues());
-			Draw();
-		}
-		MainWindow.SetAsUnsaved();
 	}
 
 	@FXML private void OverlaySelect()
@@ -213,6 +231,18 @@ public class OverlayControl extends VBox
 		MainWindow.Clone(this);
 	}
 
+	@FXML private void SetCollapsed()
+	{
+		if (pnlSliders.visibleProperty().get())
+		{
+			Collapse();
+		}
+		else
+		{
+			Expand();
+		}
+	}
+	
 	@FXML private void SetVisibility()
 	{
 		_overlay.IsEnabled = !_overlay.IsEnabled;
@@ -220,6 +250,11 @@ public class OverlayControl extends VBox
 		Draw();
 	}
 
+	private void SetCollapseButton(String icon)
+	{
+		btnExpandCollapse.setImage(new Image(icon));
+	}
+	
 	private void SetVisibilityButton()
 	{
 		btnVisibility.setImage(new Image(_overlay.IsEnabled

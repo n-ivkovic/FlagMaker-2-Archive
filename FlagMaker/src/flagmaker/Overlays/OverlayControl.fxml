@@ -10,7 +10,19 @@
 
 <fx:root type="javafx.scene.layout.VBox" xmlns:fx="http://javafx.com/fxml/1">
 	<FlowPane orientation="HORIZONTAL">
-		<Button fx:id="btnOverlay" onAction="#OverlaySelect" prefWidth="32.0" prefHeight="32.0">
+		<Button onAction="#SetCollapsed">
+			<tooltip>
+				<Tooltip fx:id="ttpExpandCollapse" />
+			</tooltip>
+			<graphic>
+				<ImageView fx:id="btnExpandCollapse" fitHeight="24.0" fitWidth="24.0">
+					<image>
+						<Image url="flagmaker/Images/collapse.png" />
+					</image>
+				</ImageView>
+			</graphic>
+		</Button>
+		<Button fx:id="btnOverlay" onAction="#OverlaySelect" prefWidth="24.0" prefHeight="24.0">
 			<tooltip>
 				<Tooltip fx:id="ttpChangeType" />
 			</tooltip>
@@ -20,7 +32,7 @@
 				<Tooltip fx:id="ttpVisibility" />
 			</tooltip>
 			<graphic>
-				<ImageView fx:id="btnVisibility" fitHeight="32.0" fitWidth="32.0">
+				<ImageView fx:id="btnVisibility" fitHeight="24.0" fitWidth="24.0">
 					<image>
 						<Image url="flagmaker/Images/check_on.png" />
 					</image>
@@ -32,7 +44,7 @@
 				<Tooltip fx:id="ttpRemove" />
 			</tooltip>
 			<graphic>
-				<ImageView fitHeight="32.0" fitWidth="32.0">
+				<ImageView fitHeight="24.0" fitWidth="24.0">
 					<image>
 						<Image url="flagmaker/Images/remove.png" />
 					</image>
@@ -44,7 +56,7 @@
 				<Tooltip fx:id="ttpMoveUp" />
 			</tooltip>
 			<graphic>
-				<ImageView fitHeight="32.0" fitWidth="32.0">
+				<ImageView fitHeight="24.0" fitWidth="24.0">
 					<image>
 						<Image url="flagmaker/Images/moveup.png" />
 					</image>
@@ -56,7 +68,7 @@
 				<Tooltip fx:id="ttpMoveDown" />
 			</tooltip>
 			<graphic>
-				<ImageView fitHeight="32.0" fitWidth="32.0">
+				<ImageView fitHeight="24.0" fitWidth="24.0">
 					<image>
 						<Image url="flagmaker/Images/movedown.png" />
 					</image>
@@ -68,7 +80,7 @@
 				<Tooltip fx:id="ttpClone" />
 			</tooltip>
 			<graphic>
-				<ImageView fitHeight="32.0" fitWidth="32.0">
+				<ImageView fitHeight="24.0" fitWidth="24.0">
 					<image>
 						<Image url="flagmaker/Images/clone.png" />
 					</image>
