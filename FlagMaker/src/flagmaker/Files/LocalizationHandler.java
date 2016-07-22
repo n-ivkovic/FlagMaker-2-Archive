@@ -18,8 +18,8 @@ public class LocalizationHandler
 	{
 		_currentLocale = GetLocalePreference();
 		if (_currentLocale == null) _currentLocale = Locale.US;
-		SetBundle(_currentLocale);
 		_defaultBundle = ResourceBundle.getBundle("bundles.strings", Locale.US);
+		SetBundle(_currentLocale);
 	}
 	
 	public static void SetLanguage(Locale locale)
@@ -43,7 +43,13 @@ public class LocalizationHandler
 	
 	private static void SetBundle(Locale locale)
 	{
-		_bundle = ResourceBundle.getBundle("bundles.strings", locale);
+		try {
+			_bundle = ResourceBundle.getBundle("bundles.strings", locale);
+		}
+		catch (Exception e)
+		{
+			_bundle = _defaultBundle;
+		}
 	}
 	
 	private static Locale GetLocalePreference()
