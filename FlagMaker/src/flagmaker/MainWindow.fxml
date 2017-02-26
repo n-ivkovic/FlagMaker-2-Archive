@@ -44,7 +44,7 @@
 				<TextField fx:id="txtRatioWidth" prefHeight="39.0" prefWidth="43.0" text="3" />
 				
 				<Label fx:id="lblGridSize" />
-				<ComboBox fx:id="cmbRatio" prefWidth="150.0" />
+				<ComboBox fx:id="cmbRatio" prefWidth="100.0" />
 				
 				<ToggleButton onAction="#GridOnChanged" styleClass="button">
 					<tooltip>
