@@ -11,11 +11,12 @@ import flagmaker.Overlays.OverlayTypes.SpecialTypes.*;
 import java.io.File;
 import java.lang.reflect.Constructor;
 import java.util.HashMap;
+import java.util.TreeMap;
 
 public class OverlayFactory
 {
 	private static HashMap<String, String> _typeMap;
-	private static HashMap<String, OverlayPath> _customTypes;
+	private static TreeMap<String, OverlayPath> _customTypes;
 	
 	public static void SetUpTypeMap()
 	{
@@ -374,7 +375,7 @@ public class OverlayFactory
 	
 	public static void FillCustomOverlays()
 	{
-		_customTypes = new HashMap<>();
+		_customTypes = new TreeMap<String, OverlayPath>() {};
 		
 		File directory;
 		try
