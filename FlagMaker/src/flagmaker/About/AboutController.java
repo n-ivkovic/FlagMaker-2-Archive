@@ -53,6 +53,7 @@ public class AboutController extends VBox
 			AddCredit(new URI("http://en.wikipedia.org/"), "Wikipedia", "Flag construction specifications and colors");
 			AddCredit(new URI("https://flag-designer.appspot.com/"), "Lars Ruoff", "Inspiration; eagle, sun, and tree patterns");
 			AddUnlinkedCredit("Various emblems created by: PepePateaTraseros, VainRobot, OakBlood3");
+			AddUnlinkedCredit("the_dirty_saltire: Icons");
 		}
 		catch (URISyntaxException ex)
 		{
@@ -105,6 +106,9 @@ public class AboutController extends VBox
 
 	private void AddHistory()
 	{
+		AddVersion("2.1", "2016");
+		AddFeature("New icons");
+		
 		AddVersion("2.0.1", "2016-07-10");
 		AddFeature("Fixed file encoding issue");
 		

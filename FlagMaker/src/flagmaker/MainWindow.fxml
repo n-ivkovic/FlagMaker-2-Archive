@@ -44,7 +44,7 @@
 				<TextField fx:id="txtRatioWidth" prefHeight="39.0" prefWidth="43.0" text="3" />
 				
 				<Label fx:id="lblGridSize" />
-				<ComboBox fx:id="cmbRatio" prefWidth="150.0" />
+				<ComboBox fx:id="cmbRatio" prefWidth="100.0" />
 				
 				<ToggleButton onAction="#GridOnChanged" styleClass="button">
 					<tooltip>
@@ -107,7 +107,7 @@
 				</Button>
 			</items>
 		</ToolBar>
-		<SplitPane fx:id="splitPane" dividerPositions="0.6" prefHeight="160.0" prefWidth="200.0" styleClass="window" VBox.vgrow="ALWAYS">
+		<SplitPane fx:id="splitPane" dividerPositions="0.55" prefHeight="160.0" prefWidth="200.0" styleClass="window" VBox.vgrow="ALWAYS">
 			<items>
 				<AnchorPane fx:id="leftAnchor" minHeight="0.0" minWidth="100.0" prefHeight="160.0" prefWidth="100.0" styleClass="transparent">
 					<children>
@@ -326,6 +326,36 @@
 										<ImageView fitHeight="32.0" fitWidth="32.0">
 											<image>
 												<Image url="flagmaker/Images/add.png" />
+											</image>
+										</ImageView>
+									</graphic>
+								</Button>
+								<Button onAction="#OverlaysExpandAll">
+									<HBox.margin>
+										<Insets left="10.0" />
+									</HBox.margin>
+									<tooltip>
+										<Tooltip fx:id="ttpOverlaysExpandAll" />
+									</tooltip>
+									<graphic>
+										<ImageView fitHeight="32.0" fitWidth="32.0">
+											<image>
+												<Image url="flagmaker/Images/expand.png" />
+											</image>
+										</ImageView>
+									</graphic>
+								</Button>
+								<Button onAction="#OverlaysCollapseAll">
+									<HBox.margin>
+										<Insets left="10.0" />
+									</HBox.margin>
+									<tooltip>
+										<Tooltip fx:id="ttpOverlaysCollapseAll" />
+									</tooltip>
+									<graphic>
+										<ImageView fitHeight="32.0" fitWidth="32.0">
+											<image>
+												<Image url="flagmaker/Images/collapse.png" />
 											</image>
 										</ImageView>
 									</graphic>

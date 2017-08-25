@@ -130,7 +130,7 @@ public class OverlaySelector extends VBox
 	{
 		FileChooser fileChooserI = new FileChooser();
 		fileChooserI.setTitle(LocalizationHandler.Get("OpenImage"));
-		fileChooserI.getExtensionFilters().add(new FileChooser.ExtensionFilter(LocalizationHandler.Get("ImageFileFilter"), "*.png;*.jpg"));
+		fileChooserI.getExtensionFilters().add(new FileChooser.ExtensionFilter(LocalizationHandler.Get("ImageFileFilter"), "*.png", "*.jpg"));
 		File imageFile = fileChooserI.showOpenDialog(_stage);
 		if (imageFile != null)
 		{
